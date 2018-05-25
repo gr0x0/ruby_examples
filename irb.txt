@@ -1,0 +1,7 @@
+O IRB é o interpretador do ruby.
+Ele pode ser invocado pelo cmd através do comando 'irb'.
+Comandos interessantes do IRB:
+  <Classe>.methods ou <variavel>.methods                                        => lista todos os métodos da classe
+  exit                                                                          => fecha o IRB
+Baixar gem específica do ruby:
+  gem install rails -v <versão>

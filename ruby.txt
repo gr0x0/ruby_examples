@@ -1,0 +1,124 @@
+####ruby-doc.org
+
+##Includes
+  require '<nome do arquivo sem .rb>'                                           #procura nas bibliotecas do ruby
+  require_relative '<nome do arquivo sem .rb>'                                  #por ser relative, procura no mesmo diretório
+
+##Declarando valores float:
+  <variavel> = <valor_float_com_ponto>
+    #Um int que receba o resultado de uma conta com float se torna float.
+
+##Funções e métodos nativos gerais:
+  <variavel>.classe                                                             #retorna a classe do objeto
+  rand <valor>                                                                  #rand retorna random entre 0..1 ou 0..parâmetro
+
+##Inicializando arrays e strings:
+  <nome> = []                                                                   #array vazio
+  <nome> = [<valor1>, <valor2>, <...>]                                          #array populado
+  <nome> = ""                                                                   #string vazio
+  <nome> = "<string>"                                                           #string populado
+  <nome> = {                                                                    #no array associativo, as idx não são 0...i, e sim
+    "<string1>" => [<values1>],                                                   #as string1, string2, ..., stringN que chamam
+    "<string2>" => [<values2>],                                                   #diretamente os elementos associados.
+    ...
+    "<stringN>" => [<valuesN>]
+  }
+
+##Adicionando elementos no array:
+  <nome do array>[<nome do array>.size] = <elemento>
+  <nome do array> << <elemento>                                                 #adicional no final do array
+
+##Métodos nativos de arrays:
+  <array>.include? <valor>                                                      #retorna boolean se possui ou não o valor nele
+  <array>.each_with_index do |<line_content>, <idx>|                            #forma padrão de percorrer todo o array ou matrix
+    ...
+  end
+  <array2> = <array1>.dup                                                       #retorna cópia do array
+
+##Funções e métodos nativos I/O:
+  puts "<string>"                                                               #printa na tela
+    #Para adicionar variáveis ao puts:
+    puts "<string> #{<variavel>} <string>"
+    puts "<string>" + <variavel>.to_s
+  <variável> = gets <valor>                                                     #recebe e armazena um valor
+  <variavel> = File.read("<nome do arquivo.extensão")                           #transforma o arquivo numa única string
+  <variavel> = File.new("<nome do arquivo.extensão")                            #lê sem jogar na memória (precisa dar close)
+  <variavel do arquivo aberto>.close                                            #fecha o arquivo aberto para leitura
+  File.write "<string>", <nome do arquivo>                                      #cria o arquivo ou sobrescreve um existente
+
+##Métodos nativos de string:
+  <string1> == <string2>                                                        #retorna boolean se são iguais ou não
+  <string>.to_i                                                                 #cast pra inteiro
+  <string>.chars                                                                #retorna string como um array de chars
+  <string>.strip                                                                #limpa o que não é caracter, como o '\n'
+  <string>.upcase                                                               #transforma tudo em upcase
+  <string>.count <char>                                                         #retorna nr de aparições do char
+  <string>.split "substring"                                                    #quebra nas substrings e retorna array de strings
+  <string>.index <char>                                                         #retorna idx da 1a aparição do char ou nil
+  <string>.join "<substring>"                                                   #retorna tudo do array num único string. Se <ss>
+                                                                                  #!= nil, ele é inserido entre cada elemento.
+
+##Métodos nativos de valores numéricos (fixnum):
+  <valor>.to_s                                                                  #cast pra string
+  <valor>.abs                                                                   #valor absoluto do número, sem sinal negativo
+
+
+##Condicionais:
+  if <condição>
+    <corpo>
+  else
+    <corpo>
+  end
+
+  unless <condição>                                                             #negação do if, equivale a "if not ... then ..."
+    <corpo>
+  else
+    <corpo>
+  end
+
+  case <variavel>
+  when <valor1>
+    <corpo>
+  when <valor2>
+    <corpo>
+  ...
+  else
+    <corpo>
+  end
+
+##Loops:
+  loop do
+    <corpo>                                                                     #é executado 1x antes de break ou não
+    end
+  end
+
+  while <condição>
+    <corpo>
+  end
+
+  for <variável de iteração> in <valor início>..<valor fim>                     #pode ser tb for<var> = <val_ini>..<val_fim>
+    <corpo>
+  end
+
+  #Quebra de laços:
+  break                                                                         #pode ser tb break if <condição>
+  next                                                                          #pula pra próxima iteração sem quebrar laço
+
+##Definindo funções:
+  def nome_da_função (<parâmetro1>, <parâmetro2>, <...>)                        #convenção: se retorna boolean nome termina com ?
+    <corpo da função>
+    return <variavel>                                                           #return n obrigatório, apenas <variavel> retorna
+  end
+
+##Chamada de funções:
+  <variavel> = <nome da função> <parâmetro1> <parâmetro2> <...>
+  <nome da função> = -> (<parâmetros>){                                         #isso se chama lambda literal, e permite que se
+    <corpo>                                                                       #atribua a fnç a uma <var>, chamando-a assim:
+  }                                                                               #<var>.call(<par>) ou apenas <var>.(<par>)
+
+##Inicializando classes:
+class <nome>
+  attr_accessor :<atributo público>
+  attr_reader :<atributo público legível, não editável>
+  attr_writer :<atributo público editável, não legível>
+end
